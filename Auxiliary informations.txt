@@ -1,0 +1,12 @@
+
+In koumura.py file, types of onsets, offsets, labels
+
+    songfile_dict = {
+        'onsets' : onsets,
+        'offsets' : offsets,
+        'labels' : labels
+    }
+
+Type of onsets: <class 'numpy.int32'>
+Type of offsets: <class 'numpy.int32'>
+Type of labels: <class 'str'>
