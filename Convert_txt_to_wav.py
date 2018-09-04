@@ -9,6 +9,7 @@ import os
 import glob
 from threading import Thread
 
+import shutil
 
 #Spectrogram parameters
 #Default windowing function in spectrogram function
@@ -222,7 +223,7 @@ class Ask_Labels(Thread):
 
 pwd = os.getcwd()
 
-os.chdir("..\SyllablesClassification\Koumura Data Set\Song_Data\Test")
+os.chdir("../../../Documents/Recordings/Song/Raw_Recordings")
 #retval = os.getcwd()
 #print("Current working directory %s" % retval)	
 
@@ -233,7 +234,7 @@ songfiles_list = glob.glob('*.txt')
 for file_num, songfile in enumerate(songfiles_list):
 
     #Read song file	
-    print('File name %s' % songfile)
+    print("songfile: %s" % songfile)
     rawsong=[]
     file = open(songfile, "r") 
     for line in file: 
@@ -249,8 +250,20 @@ for file_num, songfile in enumerate(songfiles_list):
     rawsong = np.asarray(rawsong)
     songfile_wav = songfile[0:15]+'.wav'
     print("songfile_wav: %s" % songfile_wav)
-    wavfile.write(songfile_wav, 1000, rawsong)
-	
+    wavfile.write(songfile_wav, 30303, rawsong)
+    Path_to_new_location_txt = '../Test_txt/'
+    Path_to_new_location_wav = '../Test_wav/'
+
+    Move_to_new_location_txt = "mv "+ songfile + " " + Path_to_new_location_txt
+    Move_to_new_location_wav = "mv "+ songfile_wav + " " + Path_to_new_location_wav
+
+    #os.system(Move_to_new_location_txt)
+    #os.system(Move_to_new_location_wav)
+
+    os.remove(songfile)
+
+    #shutil.move(songfile, Path_to_new_location_txt)
+    #shutil.move(songfile_wav, Path_to_new_location_wav)
 	
 	
 ##    with open(file_path) as f:
